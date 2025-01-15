@@ -5,7 +5,8 @@ import {
   getProductById,
   updateProduct,
   deleteProduct,
-  searchProducts, // Import the search function
+  searchProducts,
+  getProductsByCategoryId, // Import the new function
 } from "../controllers/product.js";
 
 const router = express.Router();
@@ -17,7 +18,10 @@ router.post("/", createProduct);
 router.get("/", getAllProducts);
 
 // Search products
-router.get("/search", searchProducts); // New search endpoint
+router.get("/search", searchProducts);
+
+// Get products by category ID
+router.get("/category/:categoryId", getProductsByCategoryId); // New route
 
 // Get a product by ID
 router.get("/:id", getProductById);

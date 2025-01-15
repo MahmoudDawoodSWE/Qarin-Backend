@@ -3,22 +3,25 @@ import mongoose from "mongoose";
 const requestsSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Pointer to User
-    category: {
+    product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: "Product",
       required: true,
-    }, // Pointer to Category
+    },
+     category: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Category", // Reference to Category model
+          required: true,
+        },
     description: { type: String, required: true }, // String for description
-    picture: { type: String, required: true }, // URL of the picture
-    offers: { type: mongoose.Schema.Types.ObjectId, ref: "Offer" }, // Pointer to Offers
+    picture: { type: String }, // URL of the picture
     barcode: { type: String }, // Barcode (GTINs) as string
     link: { type: String }, // URL or Link
-    likes: { type: Map, of: Boolean }, // Map for likes (e.g., userId -> liked status)
-    product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" }, // Pointer to Product
+    quantity: { type: Number, required: true, default: 1 },
   },
   { timestamps: true }
 );
 
-const Request = mongoose.model("Request", requestsSchema);
+const Request = mongoose.model("Requests", requestsSchema);
 
 export default Request;

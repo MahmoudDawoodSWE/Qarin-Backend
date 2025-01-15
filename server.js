@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./db.js";
 import categoryRoutes from "./routes/category.js";
 import productRouter from "./routes/product.js";
+import requestRouter from "./routes/request.js";
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 // Category routes
 app.use("/categories", categoryRoutes);
 app.use("/products", productRouter);
+app.use("/requests", requestRouter);
 
 // Start the server
 app.listen(PORT, () => {

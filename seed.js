@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import User from "./models/user.js";
 import Store from "./models/store.js";
 import Category from "./models/Category.js";
-import Product from "./models/product.js"; // Import the Product model
+import Product from "./models/product.js";
+import Request from "./models/request.js";
 import { faker } from "@faker-js/faker";
 
 dotenv.config(); // Load environment variables
@@ -125,9 +126,36 @@ const seedProducts = async (categories, stores) => {
   }
   const savedProducts = await Product.insertMany(products);
   console.log("Products seeded:", savedProducts);
+  return savedProducts;
 };
 
-// Main function to connect to the database and seed data
+// Function to seed requests
+const seedRequests = async (users, products, categories) => {
+  const requests = [];
+
+  for (let i = 0; i < 20; i++) {
+    requests.push({
+      user: faker.helpers.arrayElement(users)._id, // Associate a random user
+      product: faker.helpers.arrayElement(products)._id, // Associate a random product
+      category: faker.helpers.arrayElement(categories)._id, // Associate a random category
+      description: faker.commerce.productDescription(),
+      picture: faker.image.url(), // Random image URL
+      barcode: faker.number
+        .bigInt({ min: 1000000000000, max: 9999999999999 })
+        .toString(),
+      link: faker.internet.url(), // Random URL
+      likes: new Map(
+        users.map((user) => [user._id.toString(), faker.datatype.boolean()])
+      ),
+      quantity: faker.number.int({ min: 1, max: 10 }),
+    });
+  }
+
+  const savedRequests = await Request.insertMany(requests);
+  console.log("Requests seeded:", savedRequests);
+};
+
+// Main function to seed the database
 const seedDatabase = async () => {
   try {
     // Connect to the database
@@ -140,14 +168,18 @@ const seedDatabase = async () => {
       Store.deleteMany({}),
       Category.deleteMany({}),
       Product.deleteMany({}),
+      Request.deleteMany({}),
     ]);
     console.log("Database cleared!");
 
-    // Seed the data
+    // Seed users, categories, and products
     const categories = await seedCategories();
+    const users = await seedUsers();
     const stores = await seedStores(categories);
-    await seedUsers();
-    await seedProducts(categories, stores);
+    const products = await seedProducts(categories, stores);
+
+    // Seed requests
+    await seedRequests(users, products, categories);
 
     console.log("Seeding completed!");
     mongoose.connection.close(); // Close connection after seeding
