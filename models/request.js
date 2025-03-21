@@ -8,11 +8,6 @@ const requestsSchema = new mongoose.Schema(
       ref: "Product",
       required: true,
     },
-     category: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Category", // Reference to Category model
-          required: true,
-        },
     description: { type: String, required: true }, // String for description
     picture: { type: String }, // URL of the picture
     barcode: { type: String }, // Barcode (GTINs) as string

@@ -4,13 +4,13 @@ import translationSchema from "./translation.js";
 const categorySchema = new mongoose.Schema(
   {
     name: {
-      type: translationSchema, // Translatable field for category name
+      type: translationSchema, 
       required: true,
     },
     picture: {
       type: String,
       required: true,
-    }, // URL for the category picture
+    }, 
     level: {
       type: Number,
       default: 0,

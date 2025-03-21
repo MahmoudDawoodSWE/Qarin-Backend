@@ -2,28 +2,28 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    offerId: {
+    offer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Offer",
       required: true,
     }, // Reference to Offer
 
-    requestId: {
+    request: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Requests",
       required: true,
     }, // Reference to Request
 
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     }, // Reference to User
 
-    storeId: {
+    store: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Store",
-    //   required: true,
+      required: true,
     }, // Reference to Store
 
     quantity: {

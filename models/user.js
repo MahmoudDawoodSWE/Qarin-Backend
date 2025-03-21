@@ -2,25 +2,25 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    lastName: { type: String, required: true }, // Last name of the user
-    firstName: { type: String, required: true }, // First name of the user
-    address: { type: String }, // Address of the user
-    email: { type: String, required: true, unique: true }, // Email (unique)
-    picture: { type: String }, // Profile picture (URL)
-    location: { type: String }, // Location information
-    notification: { type: [String] }, // Array of notification messages
-    phone: { type: String, required: true }, // Phone number
-    views: { type: Number, default: 0 }, // Number of profile views
-    purchases_products: { type: String }, // Related purchases or products
+    lastName: { type: String, required: true },
+    firstName: { type: String, required: true },
+    address: { type: String },
+    email: { type: String, required: true, unique: true },
+    picture: { type: String },
+    location: { type: String },
+    notification: { type: [String] },// " TODO " add date to the notification
+    phone: { type: String, required: true },
+    views: { type: Number, default: 0 }, //" TODO " change array of ids od users who viewed the user
+    purchases_products: { type: String }, // " TODO " change array of ids of orders purchased by the user
     status: {
       type: String,
       enum: ["active", "inactive", "suspended"],
-      default: "active",
-    }, // User status
-    blockedUsers: { type: [mongoose.Schema.Types.ObjectId], ref: "User" }, // Array of blocked users (reference to User model)
+      default: "inactive",
+    }, // inactive mean that the user didn't verify his email yet
+    blockedUsers: { type: [mongoose.Schema.Types.ObjectId], ref: "User" },
   },
   { timestamps: true }
-); // Automatically add createdAt and updatedAt fields
+); 
 
 const User = mongoose.model("User", userSchema);
 

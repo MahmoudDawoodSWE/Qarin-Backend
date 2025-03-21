@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import User from "./models/user.js";
 import Store from "./models/store.js";
-import Category from "./models/Category.js";
+import Category from "./models/category.js";
 import Product from "./models/product.js";
 import Request from "./models/request.js";
 import { faker } from "@faker-js/faker";

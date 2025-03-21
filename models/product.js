@@ -9,11 +9,11 @@ const productSchema = new mongoose.Schema(
       unique: true,
     },
     name: {
-      type: translationSchema, // Reusable translation schema
+      type: translationSchema, 
       required: true,
     },
     GTINs: {
-      type: [String], // Array of strings for GTINs
+      type: [String], 
       required: true,
     },
     images: {
@@ -21,21 +21,31 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     description: {
-      type: translationSchema, // Reusable translation schema
+      type: translationSchema, 
       required: true,
     },
     attributes: {
-      type: Map, // Flexible structure for key-value pairs
+      type: Map, 
       of: String,
       required: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category", // Reference to Category model
+      ref: "Category", 
+      required: true,
+    },
+    colors: [
+      {
+        name: { type: String, required: true },
+        color: { type: String, required: true }, 
+      },
+    ],
+    sizes: {
+      type: [String],
       required: true,
     },
   },
-  { timestamps: true } // Automatically add createdAt and updatedAt fields
+  { timestamps: true } 
 );
 
 const Product = mongoose.model("Product", productSchema);
