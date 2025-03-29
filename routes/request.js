@@ -4,6 +4,7 @@ import {
   getRequestsByCategory,
   getRequestsByUser,
 } from "../controllers/request.js";
+import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 

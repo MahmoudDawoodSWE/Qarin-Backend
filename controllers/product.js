@@ -93,7 +93,6 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-
 export const searchProducts = async (req, res) => {
   try {
     const { query, lang } = req.query;
@@ -137,7 +136,6 @@ export const searchProducts = async (req, res) => {
   }
 };
 
-
 // Get products by category ID
 export const getProductsByCategoryId = async (req, res) => {
   try {
@@ -154,8 +152,9 @@ export const getProductsByCategoryId = async (req, res) => {
 
     res.status(200).json(products);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve products by category", error: error.message });
+    res.status(500).json({
+      message: "Failed to retrieve products by category",
+      error: error.message,
+    });
   }
 };

@@ -1,4 +1,4 @@
-import Category from "../models/Category.js";
+import Category from "../models/category.js";
 
 // Get all categories
 export const getAllCategories = async (req, res) => {
@@ -7,6 +7,15 @@ export const getAllCategories = async (req, res) => {
     res.status(200).json(categories);
   } catch (error) {
     res.status(500).json({ error: "Error fetching categories" });
+  }
+};
+
+export const getHighlightCategories = async (req, res) => {
+  try {
+    const highlightCategories = await Category.find().limit(5);
+    res.status(200).json(highlightCategories);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching highlight categories" });
   }
 };
 

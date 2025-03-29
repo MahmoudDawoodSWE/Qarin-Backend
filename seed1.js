@@ -25,7 +25,8 @@ const seedCategories = async () => {
   const categories = [
     {
       name: { en: "Electronics", ar: "إلكترونيات", he: "אלקטרוניקה" },
-      picture: "https://example.com/electronics.jpg", // Add a picture URL
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
       level: 1,
       advertisementSentence: {
         en: "Latest gadgets available!",
@@ -35,7 +36,8 @@ const seedCategories = async () => {
     },
     {
       name: { en: "Furniture", ar: "أثاث", he: "רהיטים" },
-      picture: "https://example.com/furniture.jpg", // Add a picture URL
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
       level: 1,
       advertisementSentence: {
         en: "Comfort and style!",
@@ -45,7 +47,8 @@ const seedCategories = async () => {
     },
     {
       name: { en: "Clothing", ar: "ملابس", he: "בגדים" },
-      picture: "https://example.com/clothing.jpg", // Add a picture URL
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
       level: 1,
       advertisementSentence: {
         en: "Trendy fashion!",
@@ -53,7 +56,85 @@ const seedCategories = async () => {
         he: "אופנה אופנתית!",
       },
     },
+    {
+      name: { en: "Books", ar: "كتب", he: "ספרים" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Explore new worlds through reading!",
+        ar: "استكشف عوالم جديدة من خلال القراءة!",
+        he: "גלה עולמות חדשים דרך קריאה!",
+      },
+    },
+    {
+      name: { en: "Toys", ar: "ألعاب", he: "צעצועים" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Fun and excitement for all ages!",
+        ar: "متعة وإثارة لجميع الأعمار!",
+        he: "כיף והתרגשות לכל גיל!",
+      },
+    },
+    {
+      name: { en: "Sports", ar: "رياضة", he: "ספורט" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Gear up for your next adventure!",
+        ar: "استعد لمغامرتك القادمة!",
+        he: "היכון להרפתקה הבאה שלך!",
+      },
+    },
+    {
+      name: { en: "Beauty", ar: "جمال", he: "יופי" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Enhance your natural beauty!",
+        ar: "تعزيز جمالك الطبيعي!",
+        he: "שפרי את היופי הטבעי שלך!",
+      },
+    },
+    {
+      name: { en: "Food & Drink", ar: "طعام وشراب", he: "אוכל ושתייה" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Delicious treats await!",
+        ar: "مأكولات لذيذة في انتظارك!",
+        he: "תענוגות טעימים מחכים לך!",
+      },
+    },
+    {
+      name: { en: "Health", ar: "صحة", he: "בריאות" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Stay fit and healthy!",
+        ar: "ابقَ لائقًا وصحيًا!",
+        he: "שמור על כושר ובריאות!",
+      },
+    },
+    {
+      name: { en: "Automotive", ar: "سيارات", he: "רכב" },
+      picture:
+        "https://img.abercrombie.com/is/image/anf/KIC_144-5090-00293-251_prod1?policy=product-medium",
+      level: 1,
+      advertisementSentence: {
+        en: "Drive with confidence!",
+        ar: "قد بثقة!",
+        he: "נהג בביטחון!",
+      },
+    },
   ];
+
   const savedCategories = await Category.insertMany(categories);
   console.log("Categories seeded:", savedCategories);
   return savedCategories;
@@ -66,7 +147,7 @@ const seedUsers = async () => {
       firstName: "John",
       lastName: "Doe",
       email: "johndoe@example.com",
-      phone: "1234567890",
+      phoneNumber: "1234567890",
       address: "123 Main St, City",
       location: "New York",
       notification: [],
@@ -76,7 +157,7 @@ const seedUsers = async () => {
       firstName: "Sara",
       lastName: "Smith",
       email: "sarasmith@example.com",
-      phone: "9876543210",
+      phoneNumber: "9876543210",
       address: "456 Elm St, City",
       location: "Los Angeles",
       notification: [],
@@ -92,18 +173,29 @@ const seedUsers = async () => {
 const seedStores = async (categories) => {
   const stores = [
     {
-      firstName: "Michael",
-      lastName: "Brown",
-      email: "michael@example.com",
-      phone: "1122334455",
+      storeName: "Development Store",
+      firstName: "dev",
+      lastName: "team",
+      email: "dev@qarin.com",
+      phoneNumber: "1122334455",
       address: "789 Oak St, City",
       category: categories[0]._id,
     },
     {
+      storeName: "Bluelock",
+      firstName: "Michael",
+      lastName: "Brown",
+      email: "michael@example.com",
+      phoneNumber: "1122334455",
+      address: "789 Oak St, City",
+      category: categories[0]._id,
+    },
+    {
+      storeName: "Redlock",
       firstName: "Emma",
       lastName: "Wilson",
       email: "emma@example.com",
-      phone: "5566778899",
+      phoneNumber: "5566778899",
       address: "321 Pine St, City",
       category: categories[1]._id,
     },
@@ -116,12 +208,16 @@ const seedStores = async (categories) => {
 const seedProducts = async (categories, stores) => {
   const products = [
     {
-      productId: "P123456", // Unique product ID
-      name: { en: "Laptop", ar: "كمبيوتر محمول", he: "מחשב נייד" },
-      GTINs: ["1234567890123"], // Example GTIN
-      images: ["https://example.com/laptop.jpg"], // Example image URL
-      category: categories[0]._id,
-      store: stores[0]._id,
+      productId: "P123456",
+      name: {
+        en: "Laptop",
+        ar: "كمبيوتر محمول",
+        he: "מחשב נייד",
+      },
+      GTINs: ["1234567890123"],
+      images: ["https://example.com/laptop.jpg"],
+      category: categories[0]._id, // Electronics category
+      store: stores[0]._id, // Michael's store
       description: {
         en: "High-performance laptop.",
         ar: "كمبيوتر محمول عالي الأداء.",
@@ -133,18 +229,22 @@ const seedProducts = async (categories, stores) => {
         RAM: "16GB",
       },
       colors: [
-        { name: "Silver", color: "#C0C0C0" },
-        { name: "Black", color: "#000000" },
+        { name: { en: "Silver", ar: "فضي", he: "כסף" }, color: "#C0C0C0" },
+        { name: { en: "Black", ar: "أسود", he: "שחור" }, color: "#000000" },
       ],
       sizes: ["13-inch", "15-inch", "17-inch"],
     },
     {
-      productId: "P789012", // Unique product ID
-      name: { en: "Sofa", ar: "أريكة", he: "ספה" },
-      GTINs: ["9876543210987"], // Example GTIN
-      images: ["https://example.com/sofa.jpg"], // Example image URL
-      category: categories[1]._id,
-      store: stores[1]._id,
+      productId: "P789012",
+      name: {
+        en: "Sofa",
+        ar: "أريكة",
+        he: "ספה",
+      },
+      GTINs: ["9876543210987"],
+      images: ["https://example.com/sofa.jpg"],
+      category: categories[1]._id, // Furniture category
+      store: stores[1]._id, // Emma's store
       description: {
         en: "Comfortable and stylish sofa.",
         ar: "أريكة مريحة وأنيقة.",
@@ -156,18 +256,60 @@ const seedProducts = async (categories, stores) => {
         dimensions: "200x90x85 cm",
       },
       colors: [
-        { name: "Blue", color: "#0000FF" },
-        { name: "Gray", color: "#808080" },
+        { name: { en: "Blue", ar: "أزرق", he: "כחול" }, color: "#0000FF" },
+        { name: { en: "Gray", ar: "رمادي", he: "אפור" }, color: "#808080" },
       ],
       sizes: ["2-seater", "3-seater", "L-shaped"],
     },
+    {
+      productId: "AWSE2024",
+      name: {
+        en: "Apple Watch SE 2024",
+        ar: "ساعة آبل SE 2024",
+        he: "שעון אפל SE 2024",
+      },
+      GTINs: ["1234567890123"],
+      images: [
+        "https://www.ivory.co.il/files/catalog/org/1726824524i24XB.webp",
+        "https://www.ivory.co.il/files/catalog/org/1726824524g24Oe.webp",
+        "https://www.ivory.co.il/files/catalog/org/1726824524g24Hk.webp",
+        "https://www.ivory.co.il/files/catalog/org/1726824524o24KK.webp",
+      ],
+      category: categories[0]._id, // Electronics category
+      store: stores[0]._id, // Michael's store
+      description: {
+        en: "The Apple Watch SE 2024 gives you the essential Apple Watch features at an affordable price. Track your daily activity, monitor your health, stay connected, and use Apple Pay.",
+        ar: "توفر لك ساعة آبل SE 2024 الميزات الأساسية لساعة آبل بسعر مناسب. تابع نشاطك اليومي، راقب صحتك، ابقَ متصلاً، واستخدم Apple Pay.",
+        he: "השעון אפל SE 2024 מציע לך את התכונות הבסיסיות של שעון אפל במחיר נגיש. עקוב אחרי הפעילות היומית שלך, נטר את הבריאות שלך, הישאר מחובר והשתמש ב-Apple Pay.",
+      },
+      attributes: {
+        display: "Retina LTPO OLED",
+        processor: "S9 SiP",
+        waterResistance: "50 meters",
+        batteryLife: "Up to 18 hours",
+        connectivity: "GPS, Bluetooth 5.3, Wi-Fi",
+        healthFeatures: "Heart rate, Sleep tracking, Fall detection",
+      },
+      colors: [
+        { name: { en: "Silver", ar: "فضي", he: "כסף" }, color: "#E2E2E2" },
+        {
+          name: { en: "Midnight", ar: "منتصف الليل", he: "חצות" },
+          color: "#1A1B1F",
+        },
+        {
+          name: { en: "Starlight", ar: "ضوء النجوم", he: "אור כוכבים" },
+          color: "#E3C6AA",
+        },
+      ],
+      sizes: ["40mm", "44mm"],
+    },
   ];
 
+  // Insert the products into the database
   const savedProducts = await Product.insertMany(products);
   console.log("Products seeded:", savedProducts);
   return savedProducts;
 };
-
 
 // Function to seed offers
 const seedOffers = async (requests, stores) => {
@@ -176,7 +318,6 @@ const seedOffers = async (requests, stores) => {
       request: requests[0]._id,
       store: stores[0]._id,
       price: 1200,
-      status: "Pending",
       quantity: 10, // Example quantity
       wholeSalePrice: 1000, // Example wholesale price
       cost: 950, // Example cost
@@ -188,7 +329,6 @@ const seedOffers = async (requests, stores) => {
       request: requests[1]._id,
       store: stores[1]._id,
       price: 800,
-      status: "Accepted",
       quantity: 5, // Example quantity
       wholeSalePrice: 700, // Example wholesale price
       cost: 650, // Example cost
@@ -213,6 +353,7 @@ const seedRequests = async (users, products, categories) => {
       barcode: "1234567890123",
       link: "https://example.com/laptop-details",
       quantity: 1,
+      category: categories[0]._id,
     },
     {
       user: users[1]._id,
@@ -222,6 +363,7 @@ const seedRequests = async (users, products, categories) => {
       barcode: "9876543210987",
       link: "https://example.com/sofa-details",
       quantity: 2,
+      category: categories[1]._id,
     },
   ];
 

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import User from "./user.js";
 
 const storeSchema = new mongoose.Schema({
+  storeName: { type: String, required: true },
   rating: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -26,5 +27,6 @@ const storeSchema = new mongoose.Schema({
 });
 
 const Store = User.discriminator("Store", storeSchema);
+// const Store = mongoose.model("Store", storeSchema);
 
 export default Store;

@@ -9,11 +9,11 @@ const productSchema = new mongoose.Schema(
       unique: true,
     },
     name: {
-      type: translationSchema, 
+      type: translationSchema,
       required: true,
     },
     GTINs: {
-      type: [String], 
+      type: [String],
       required: true,
     },
     images: {
@@ -21,23 +21,23 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     description: {
-      type: translationSchema, 
+      type: translationSchema,
       required: true,
     },
     attributes: {
-      type: Map, 
+      type: Map,
       of: String,
       required: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category", 
+      ref: "Category",
       required: true,
     },
     colors: [
       {
-        name: { type: String, required: true },
-        color: { type: String, required: true }, 
+        name: { type: translationSchema, required: true },
+        color: { type: String, required: true },
       },
     ],
     sizes: {
@@ -45,7 +45,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true } 
+  { timestamps: true }
 );
 
 const Product = mongoose.model("Product", productSchema);

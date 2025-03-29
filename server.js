@@ -7,6 +7,10 @@ import productRouter from "./routes/product.js";
 import requestRouter from "./routes/request.js";
 import offerRouter from "./routes/offer.js";
 import orderRouter from "./routes/order.js";
+import authRouter from "./routes/auth.js";
+import Store from "./models/store.js";
+import mongoose from "mongoose";
+import { verifyToken } from "./middlewares/verifyToken.js";
 dotenv.config();
 
 const app = express();
@@ -15,12 +19,13 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
-
 // Enable CORS for all origins
 app.use(cors());
 
 // Middleware to parse JSON
 app.use(express.json());
+
+app.use(verifyToken);
 
 // Middleware to log incoming requests
 app.use((req, res, next) => {
@@ -31,7 +36,12 @@ app.use((req, res, next) => {
 });
 // Basic route
 app.get("/", (req, res) => {
-  res.send("Welcome to the Express backend with MongoDB!");
+  const modelNames = mongoose.modelNames();
+
+  console.log("Defined models:", modelNames);
+
+  res.send(modelNames);
+  // res.send("Welcome to the Express backend with MongoDB!");
 });
 
 // Category routes
@@ -40,7 +50,7 @@ app.use("/products", productRouter);
 app.use("/requests", requestRouter);
 app.use("/offers", offerRouter);
 app.use("/orders", orderRouter);
-
+app.use("/auth", authRouter);
 
 // Start the server
 app.listen(PORT, () => {
