@@ -95,36 +95,54 @@ export const deleteProduct = async (req, res) => {
 
 export const searchProducts = async (req, res) => {
   try {
-    const { query, lang } = req.query;
-
-    // Validate query parameter
-    if (!query) {
-      return res.status(400).json({ message: "Query parameter is required" });
+    const { query, lang, image, url, qrCode } = req.query;
+console.log(
+      "Search parameters received:",
+      { query, lang, image, url, qrCode }
+    );
+    // Validate at least one search parameter
+    if (!query && !image && !url && !qrCode) {
+      return res
+        .status(400)
+        .json({ message: "At least one search parameter is required" });
     }
 
     // Build search condition
-    let searchCondition;
+    let searchCondition = {};
 
-    if (lang) {
-      // Search in a specific language
-      searchCondition = {
-        $or: [
+    if (query) {
+      if (lang) {
+        // Search in a specific language
+        searchCondition.$or = [
           { [`name.${lang}`]: { $regex: query, $options: "i" } },
           { [`description.${lang}`]: { $regex: query, $options: "i" } },
-        ],
-      };
-    } else {
-      // Search across all languages
-      searchCondition = {
-        $or: [
+        ];
+      } else {
+        // Search across all languages
+        searchCondition.$or = [
           { "name.en": { $regex: query, $options: "i" } },
           { "name.ar": { $regex: query, $options: "i" } },
           { "name.he": { $regex: query, $options: "i" } },
           { "description.en": { $regex: query, $options: "i" } },
           { "description.ar": { $regex: query, $options: "i" } },
           { "description.he": { $regex: query, $options: "i" } },
-        ],
-      };
+        ];
+      }
+    }
+
+    if (image) {
+      // Search by image (assuming image is stored as a URL or identifier)
+      searchCondition.image = image;
+    }
+
+    if (url) {
+      // Search by URL
+      searchCondition.url = url;
+    }
+
+    if (qrCode) {
+      // Search by QR code
+      searchCondition.qrCode = qrCode;
     }
 
     const products = await Product.find(searchCondition).populate("category");

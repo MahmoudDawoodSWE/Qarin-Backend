@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
     },
     GTINs: {
       type: [String],
-      required: true,
+      // required: true,
     },
     images: {
       type: [String],
@@ -22,12 +22,12 @@ const productSchema = new mongoose.Schema(
     },
     description: {
       type: translationSchema,
-      required: true,
+      // required: true,
     },
     attributes: {
       type: Map,
       of: String,
-      required: true,
+      // required: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
@@ -37,12 +37,15 @@ const productSchema = new mongoose.Schema(
     colors: [
       {
         name: { type: translationSchema, required: true },
-        color: { type: String, required: true },
+        color: {
+          type: String,
+          required: true
+        },
       },
     ],
     sizes: {
       type: [String],
-      required: true,
+      // required: true,
     },
   },
   { timestamps: true }
